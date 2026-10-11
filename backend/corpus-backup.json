@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "assistant": "Famie",
+    "product": "Famroot",
+    "module": "connects-family-tree",
+    "version": "stage-1",
+    "purpose": "Supplementary how-to knowledge base for Famie, the in-product Family Tree help assistant. In the live product the user's OWN family tree is the primary context for any question; this corpus is the ADDITIONAL how-to knowledge Famie falls back to when the tree itself doesn't answer the question. Answer only from this content plus the user's tree; never invent.",
+    "boundary": "User-facing how-to and conceptual help ONLY. No internal algorithms, architecture, business rules, or roadmap.",
+    "productNote": "The family tree lives under the nav item 'Connects', which has a 'Family' tab and a 'Friends' tab. The tree has a 'View Family' (read) mode and an 'Edit Family' mode. All labels below are the product's real strings, verified against the web app's i18n locale file and components. Features marked status:'coming-soon' are built but disabled in production; Famie should tell users they're coming soon, not how to use them yet.",
+    "retrieveOver": ["text", "media[].transcript", "media[].alt", "media[].annotations", "title", "tags"],
+    "displayFrom": ["title", "bodyHtml", "media", "url"],
+    "linkScheme": "`url` is a deep-link into the app; Famie cites it as a reference card. `contexts` values match the `pageContext` a caller may send for page-aware biasing."
+  },
+  "resources": [
+    {
+      "id": "help-add-people",
+      "type": "help",
+      "title": "Add people to your family tree",
+      "url": "/help/connects/add-people",
+      "tags": ["family-tree", "connects", "add", "spouse", "son", "daughter", "child", "pet", "quick-add"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-parents-siblings", "help-multiple-spouses", "help-adoption", "help-pets", "help-invite-to-tree"],
+      "text": "To build your tree, open Connects, choose the Family tab, and switch to Edit Family. Around each person you'll see placeholder 'add' nodes: Add Spouse, Add Son, Add Daughter, and Add Pet. Tap one to add that relative and Famroot places them in the right spot. You can also use Quick add by name from a person's menu to create someone fast with just a name and fill in the rest later. New people can be plain profiles you create, or you can Invite to Tree so a real relative joins and manages their own details. Switch back to View Family when you're done editing.",
+      "bodyHtml": "<p>Open <strong>Connects &rarr; Family</strong> and switch to <strong>Edit Family</strong>. Use the placeholder nodes around a person &mdash; <strong>Add Spouse</strong>, <strong>Add Son</strong>, <strong>Add Daughter</strong>, <strong>Add Pet</strong> &mdash; or <strong>Quick add by name</strong> to create someone fast. Switch back to <strong>View Family</strong> when done.</p>",
+      "media": []
+    },
+    {
+      "id": "help-add-parents-siblings",
+      "type": "help",
+      "title": "Add parents, siblings, and other relatives",
+      "url": "/help/connects/add-relatives",
+      "tags": ["family-tree", "connects", "parent", "father", "mother", "sibling", "relatives", "quick-add"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-people", "help-modify-delete-relation"],
+      "text": "The tree's placeholder nodes cover spouse, son, daughter, and pet directly. To add other relatives such as parents or siblings, use Quick add by name from the person's menu and set how they're related, or add the connecting person first and build outward. Relationship types the tree understands include Father, Mother, Sibling, Spouse, Child, and their adopted variants. If a relative already exists elsewhere on the tree, connect them rather than creating a duplicate. If you connect someone the wrong way, use Modify Relationship to correct it.",
+      "bodyHtml": "<p>Spouse, son, daughter, and pet have direct add nodes. For parents, siblings, and others, use <strong>Quick add by name</strong> and set the relationship (Father, Mother, Sibling, Spouse, Child, and adopted variants), or connect an existing person instead of duplicating them. Use <strong>Modify Relationship</strong> to fix a wrong connection.</p>",
+      "media": []
+    },
+    {
+      "id": "help-edit-profile",
+      "type": "help",
+      "title": "Edit a person's profile and add custom fields",
+      "url": "/help/connects/edit-profile",
+      "tags": ["family-tree", "connects", "profile", "details", "custom-fields", "edit"],
+      "feature": "family-tree",
+      "contexts": ["profile"],
+      "links": ["help-add-people"],
+      "text": "Open a person and choose View Profile, or Edit Details to change their information. A profile is organised into tabs: Basic, Contact, Moments, Location, Social, Education, Profession, and Custom. Use the Custom tab to add your own fields (short, medium, or long text, or a yes/no field) for things Famroot doesn't have a built-in box for, and toggle Show on profile to decide whether each custom field is visible. Changes save to that person only.",
+      "bodyHtml": "<p>Open a person &rarr; <strong>View Profile</strong> or <strong>Edit Details</strong>. Profiles have tabs: Basic, Contact, Moments, Location, Social, Education, Profession, and <strong>Custom</strong>. Add your own fields on the Custom tab and use <strong>Show on profile</strong> to control visibility.</p>",
+      "media": []
+    },
+    {
+      "id": "help-multiple-spouses",
+      "type": "help",
+      "title": "Add a second (or later) spouse",
+      "url": "/help/connects/multiple-spouses",
+      "tags": ["family-tree", "connects", "marriage", "spouse", "second-marriage", "re-marriage", "multi-spouse"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-people", "help-adoption", "video-multi-spouse", "discuss-second-spouse"],
+      "text": "A person can have more than one spouse, so re-marriages are recorded properly and no earlier spouse is removed. In Edit Family, use the Add Spouse node on the person again to add another partner. Famroot draws multiple-spouse connections so both partners show, and children can be connected under the spouse they belong to so half-siblings group correctly. Adding a second spouse never deletes the first.",
+      "bodyHtml": "<p>A person can have more than one spouse. In <strong>Edit Family</strong>, use the person's <strong>Add Spouse</strong> node again to add another partner. Famroot draws multiple-spouse connections and lets you connect children under the right spouse; the earlier spouse is never removed.</p>",
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.famroot.com/help/connects/multi-spouse.png",
+          "alt": "A person shown with two spouses connected by multiple-spouse edges, children grouped under each",
+          "annotations": ["Use Add Spouse again", "Both spouses shown", "Children connect under the right spouse"]
+        }
+      ]
+    },
+    {
+      "id": "help-adoption",
+      "type": "help",
+      "title": "Record adopted parents, siblings, and children",
+      "url": "/help/connects/adoption",
+      "tags": ["family-tree", "connects", "adoption", "adopted", "parent", "sibling", "child"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-people", "help-add-parents-siblings"],
+      "text": "Famroot distinguishes biological and adopted relationships. When you add or connect a parent, sibling, or child you can mark the link as adopted, and the person then shows with an Adopted label (Adopted Parent, Adopted Sibling, or Adopted). A show-adopted toggle lets you include or hide adopted connections on the tree. Recording this correctly keeps the Path Relation Viewer describing people the way your family actually would.",
+      "bodyHtml": "<p>Famroot tracks <strong>biological vs adopted</strong> relationships. Mark a parent, sibling, or child link as adopted and it shows with an <strong>Adopted</strong> label. A show-adopted toggle includes or hides adopted connections.</p>",
+      "media": []
+    },
+    {
+      "id": "help-pets",
+      "type": "help",
+      "title": "Add a pet to the family",
+      "url": "/help/connects/pets",
+      "tags": ["family-tree", "connects", "pet", "family-pet", "add-pet"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-people"],
+      "text": "Pets are first-class members of your family in Famroot. In Edit Family, use the Add Pet node on a person to add their pet, and it appears on the tree with a Family Pet role. Pets are added and shown just like people, so the whole household is on the tree.",
+      "bodyHtml": "<p>Pets are family too. In <strong>Edit Family</strong>, use the <strong>Add Pet</strong> node on a person; the pet shows on the tree with a <strong>Family Pet</strong> role.</p>",
+      "media": []
+    },
+    {
+      "id": "help-modify-delete-relation",
+      "type": "help",
+      "title": "Change or remove a relationship",
+      "url": "/help/connects/modify-delete-relation",
+      "tags": ["family-tree", "connects", "modify-relationship", "delete-relation", "remove", "mistake", "approval"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-people", "help-link-profiles"],
+      "text": "If someone is connected the wrong way, open them in Edit Family and choose Modify Relationship to correct how they're linked, or Delete Relation to remove that connection. When a person is referenced by more than one family (for example a shared relative others also have on their trees), deleting the relation needs an approval before it takes effect, so a shared branch isn't removed without agreement. Modifying a relationship is the safer choice when the person is real but simply connected incorrectly.",
+      "bodyHtml": "<p>In <strong>Edit Family</strong>, use <strong>Modify Relationship</strong> to fix how a person is connected, or <strong>Delete Relation</strong> to remove a connection. If the person is shared with other families, deleting needs an approval first so a shared branch isn't removed unilaterally.</p>",
+      "media": []
+    },
+    {
+      "id": "help-layouts-and-views",
+      "type": "help",
+      "title": "Switch views: Family Tree, Kanban, and avatar styles",
+      "url": "/help/connects/views",
+      "tags": ["family-tree", "connects", "view", "layout", "kanban", "relational", "professional", "educational", "avatar"],
+      "feature": "family-tree",
+      "contexts": ["views"],
+      "links": ["help-navigate-tree", "help-swap-perspective", "help-export-image"],
+      "text": "Connects can show your family in more than one way. The View control switches between the Family Tree (the canvas) and the Kanban View, which lists people in columns (a Folder View is coming soon). Separately, the Avatar control changes how each person is summarised on the tree. Relational, Professional, or Educational. so you can look at the same family through different lenses (for example seeing everyone's profession at a glance). These change how the tree is drawn, never your data.",
+      "bodyHtml": "<p>The <strong>View</strong> control switches between <strong>Family Tree</strong> and <strong>Kanban View</strong> (Folder View is coming soon). The <strong>Avatar</strong> control changes the lens on each person: <strong>Relational</strong>, <strong>Professional</strong>, or <strong>Educational</strong>. These change the drawing, not your data.</p>",
+      "media": []
+    },
+    {
+      "id": "help-navigate-tree",
+      "type": "help",
+      "title": "Move around a large tree: minimap, Navigator, and Recenter",
+      "url": "/help/connects/navigate",
+      "tags": ["family-tree", "connects", "minimap", "navigator", "recenter", "zoom", "pan", "navigation"],
+      "feature": "family-tree",
+      "contexts": ["views"],
+      "links": ["help-swap-perspective", "help-layouts-and-views"],
+      "text": "On a big tree, drag to pan and scroll or pinch to zoom. The minimap in the corner shows where you are and lets you jump around without losing your place (you can minimise it). Use Navigator to move through the tree, and Recenter to snap the view back to the person the tree is currently centred on. A canvas hints overlay explains the on-screen controls if you're unsure what something does.",
+      "bodyHtml": "<p>Drag to pan, scroll/pinch to zoom. The <strong>minimap</strong> shows where you are and jumps you around; <strong>Navigator</strong> helps you move through the tree; <strong>Recenter</strong> snaps back to the person the tree is centred on. A canvas hints overlay explains the controls.</p>",
+      "media": []
+    },
+    {
+      "id": "help-swap-perspective",
+      "type": "help",
+      "title": "Swap Perspective: view the tree from someone else's point of view",
+      "url": "/help/connects/swap-perspective",
+      "tags": ["family-tree", "connects", "swap-perspective", "switch-perspective", "re-root", "viewpoint", "recenter"],
+      "feature": "family-tree",
+      "contexts": ["views", "profile"],
+      "links": ["help-view-couple-tree", "help-switch-tree", "help-path-relation-viewer"],
+      "text": "The tree is normally centred on you, but you can re-root it on anyone. Open a person and choose Swap Perspective (in Edit Family the same action is labelled Switch Perspective) and the tree redraws with them at the centre, showing their family. the heading reads '{Name}'s Family'. This is useful for seeing how a relative's side looks or for checking a branch you just added. It only changes the view, not your data. use Recenter to return to the person you started from.",
+      "bodyHtml": "<p>Open a person and choose <strong>Swap Perspective</strong> (labelled <strong>Switch Perspective</strong> in Edit Family) to re-root the tree on them; the heading shows <em>\"{Name}'s Family\"</em>. It's view-only. use <strong>Recenter</strong> to return.</p>",
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.famroot.com/help/connects/swap-perspective.png",
+          "alt": "The tree re-rooted on a different person, headed with that person's name, family drawn around them",
+          "annotations": ["Choose Swap Perspective on any person", "Tree re-centres on them", "Recenter to return"]
+        }
+      ]
+    },
+    {
+      "id": "help-view-couple-tree",
+      "type": "help",
+      "title": "View Couple Tree: see a married pair and both families together",
+      "url": "/help/connects/view-couple-tree",
+      "tags": ["family-tree", "connects", "view-couple-tree", "view-couple", "marriage", "both-sides", "in-laws"],
+      "feature": "family-tree",
+      "contexts": ["views", "profile"],
+      "links": ["help-swap-perspective", "help-multiple-spouses"],
+      "text": "To see a married couple with both of their families at once, open one partner and choose View Couple Tree (also shown as View Couple). The tree centres on the pair so you can see how the two sides connect, review in-laws, and check where their children link. If a person has more than one spouse, this shows the couple you selected. Like Swap Perspective, it changes only the view.",
+      "bodyHtml": "<p>Open a partner and choose <strong>View Couple Tree</strong> (a.k.a. <strong>View Couple</strong>) to centre the tree on a married pair and see both their families together. View-only.</p>",
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.famroot.com/help/connects/view-couple-tree.png",
+          "alt": "Couple tree centred on a married pair, one partner's family and the other's shown together with children below",
+          "annotations": ["One partner's family", "The other partner's family", "Shared children below"]
+        }
+      ]
+    },
+    {
+      "id": "help-switch-tree",
+      "type": "help",
+      "title": "Switch Tree: move between family trees you're connected to",
+      "url": "/help/connects/switch-tree",
+      "tags": ["family-tree", "connects", "switch-tree", "other-tree"],
+      "feature": "family-tree",
+      "contexts": ["views"],
+      "links": ["help-swap-perspective", "help-tree-merge"],
+      "text": "If you're connected to more than one family tree, use Switch Tree to move between them. This changes which tree you're viewing; it doesn't combine them. To actually join two trees into one, see Tree Merge.",
+      "bodyHtml": "<p>Use <strong>Switch Tree</strong> to move between family trees you're connected to. It changes which tree you view. to combine two trees, use <strong>Tree Merge</strong>.</p>",
+      "media": []
+    },
+    {
+      "id": "help-path-relation-viewer",
+      "type": "help",
+      "title": "Path Relation Viewer: find how two people are related",
+      "url": "/help/connects/path-relation-viewer",
+      "tags": ["family-tree", "connects", "path-relation-viewer", "relationship", "how-related", "path", "cousins"],
+      "feature": "family-tree",
+      "contexts": ["path-relation"],
+      "links": ["help-swap-perspective", "help-add-people"],
+      "text": "Not sure how you're related to someone on the tree? Open the Path Relation Viewer and pick a person. Famroot traces the family path between you and them, shows the Path step by step, and states the Relationship in plain words, noting it's 'Based on N levels of family'. It works across marriages and adopted links too. If there's no connecting path it says 'No relation path found'. It's a quick way to answer 'who is this person to me?' and to check a new addition landed in the right place.",
+      "bodyHtml": "<p>Open the <strong>Path Relation Viewer</strong> and pick a person. Famroot traces the <strong>Path</strong> and states the <strong>Relationship</strong> in plain words (\"Based on N levels of family\"), across marriages and adopted links. No connection shows \"No relation path found\".</p>",
+      "media": []
+    },
+    {
+      "id": "help-people-search",
+      "type": "help",
+      "title": "Find a person on your tree",
+      "url": "/help/connects/people-search",
+      "tags": ["family-tree", "connects", "search", "find-person", "name", "phone"],
+      "feature": "family-tree",
+      "contexts": ["views"],
+      "links": ["help-path-relation-viewer", "help-swap-perspective"],
+      "text": "Use the people search in Connects to jump to anyone on your tree by name or phone number. Start typing and pick from the dropdown, and the tree moves to that person. Search looks within your own family network, so it finds the people connected to you.",
+      "bodyHtml": "<p>Use the people search in Connects to jump to anyone by <strong>name or phone</strong>. Pick from the dropdown and the tree moves to them. It searches within your own family network.</p>",
+      "media": []
+    },
+    {
+      "id": "help-export-image",
+      "type": "help",
+      "title": "Export or share your tree as an image",
+      "url": "/help/connects/export-image",
+      "tags": ["family-tree", "connects", "export", "image", "jpeg", "png", "share", "copy-link"],
+      "feature": "family-tree",
+      "contexts": ["export"],
+      "links": ["help-layouts-and-views", "help-gedcom"],
+      "text": "To save or share your tree, use Export and choose JPEG or PNG. Famroot renders the current view as a high-resolution image with the Famroot logo stamped on it (the JPEG is flattened onto a soft cream background). Set up the view you want first. switch views or Swap Perspective. because the export captures what's on screen. You can also use Copy Link to share a link to the current tree view instead of a file. The image includes only people already visible to you.",
+      "bodyHtml": "<p>Use <strong>Export</strong> and pick <strong>JPEG</strong> or <strong>PNG</strong> (high-resolution, logo-stamped; JPEG on a cream background). It captures the current view, so set it up first. Or use <strong>Copy Link</strong> to share the current view instead of a file.</p>",
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://cdn.famroot.com/help/connects/export-menu.png",
+          "alt": "The export menu showing JPEG, PNG, and Copy Link options",
+          "annotations": ["Choose JPEG or PNG", "Or Copy Link to the current view"]
+        }
+      ]
+    },
+    {
+      "id": "help-gedcom",
+      "type": "help",
+      "title": "Import or export a GEDCOM file (coming soon)",
+      "url": "/help/connects/gedcom",
+      "tags": ["family-tree", "connects", "gedcom", "import", "export", "migrate", "coming-soon"],
+      "feature": "family-tree",
+      "status": "coming-soon",
+      "contexts": ["import", "export"],
+      "links": ["help-deduplicate", "help-export-image"],
+      "text": "GEDCOM import and export are on the way but not switched on yet. When available, GEDCOM export will let you download your tree as a .ged file, and GEDCOM import will read a .ged from another app, match each person against people you already have, and let you initiate a merge request to bring them in. For now, Famie should tell users this is coming soon rather than walk them through it. To share your tree today, use image export (JPEG/PNG) or Copy Link.",
+      "bodyHtml": "<p><strong>GEDCOM import/export are coming soon</strong>, not yet enabled. When live, export saves a <code>.ged</code> and import matches people against your tree before an <em>Initiate merge request</em>. For now, use image export or Copy Link to share your tree.</p>",
+      "media": []
+    },
+    {
+      "id": "help-deduplicate",
+      "type": "help",
+      "title": "Deduplicate: remove duplicate people on your own tree",
+      "url": "/help/connects/deduplicate",
+      "tags": ["family-tree", "connects", "deduplicate", "duplicates", "cleanup"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-tree-merge", "help-link-profiles"],
+      "text": "Sometimes the same person ends up on your tree twice. Use Deduplicate to find and resolve duplicate people within your own tree. Famroot suggests likely duplicates so you can confirm and combine them into one person, keeping their connections. Deduplication cannot be undone, so review the matches before confirming. Deduplicate is for duplicates inside one tree. to join two different family trees, use Tree Merge instead.",
+      "bodyHtml": "<p>Use <strong>Deduplicate</strong> to find and combine duplicate people within your own tree. <strong>Deduplication cannot be undone</strong> &mdash; review the suggested matches before confirming. (For two separate trees, use <strong>Tree Merge</strong>.)</p>",
+      "media": []
+    },
+    {
+      "id": "help-tree-merge",
+      "type": "help",
+      "title": "Tree Merge: join two family trees",
+      "url": "/help/connects/tree-merge",
+      "tags": ["family-tree", "connects", "tree-merge", "merge", "approval", "two-families"],
+      "feature": "family-tree",
+      "contexts": ["profile"],
+      "links": ["help-deduplicate", "help-link-profiles", "help-switch-tree"],
+      "text": "When two families discover they share relatives, Tree Merge joins their two trees into one. Because it affects both families, it goes through an approval workflow: the request is reviewed and confirmed by the people involved before the trees are combined (you'll see a 'Confirm Tree Merge' step and a tree-merge request notification). A merge combines the shared people and their connections. it is a significant change and there's no one-tap undo, so confirm carefully. Use Tree Merge for two separate trees; use Deduplicate for duplicates inside your own tree.",
+      "bodyHtml": "<p><strong>Tree Merge</strong> joins two family trees into one. It runs through a multi-party <strong>approval</strong> (a <em>Confirm Tree Merge</em> step and a request notification) because it affects both families. It's significant with no one-tap undo, so confirm carefully.</p>",
+      "media": []
+    },
+    {
+      "id": "help-link-profiles",
+      "type": "help",
+      "title": "Link Profiles: connect two records for the same person",
+      "url": "/help/connects/link-profiles",
+      "tags": ["family-tree", "connects", "link-profiles", "link", "same-person", "records"],
+      "feature": "family-tree",
+      "contexts": ["profile"],
+      "links": ["help-deduplicate", "help-modify-delete-relation"],
+      "text": "If the same real person exists as two separate profile records (for example a profile you created and their own registered account), use Link Profiles to connect them so they're treated as one person. Because it can affect someone else's record, linking is confirmed before it takes effect. Link Profiles connects records for the same person; Deduplicate removes duplicate nodes on your own tree; Tree Merge joins two whole trees.",
+      "bodyHtml": "<p>Use <strong>Link Profiles</strong> to connect two records for the same real person (e.g. a profile you made and their own account) so they're treated as one. It's confirmed before taking effect.</p>",
+      "media": []
+    },
+    {
+      "id": "help-invite-to-tree",
+      "type": "help",
+      "title": "Invite a relative to your tree",
+      "url": "/help/connects/invite-to-tree",
+      "tags": ["family-tree", "connects", "invite-to-tree", "invite", "join", "verification-code", "registered-user"],
+      "feature": "family-tree",
+      "contexts": ["edit-family", "profile"],
+      "links": ["help-add-people", "help-link-profiles"],
+      "text": "People on your tree can be plain profiles you created, or real Famroot members. To bring a relative in, open them in Edit Family and choose Invite to Tree. They receive a welcome notification with a verification code to confirm their account, and once they join they can manage their own details and their side of the family while staying on the same tree. Inviting relatives is how a tree grows beyond what one person can enter and how everyone keeps their own information current.",
+      "bodyHtml": "<p>Open a person in <strong>Edit Family</strong> and choose <strong>Invite to Tree</strong>. They get a welcome notification with a <strong>verification code</strong> to confirm their account, then manage their own details on the same tree.</p>",
+      "media": []
+    },
+    {
+      "id": "help-photo-annotator",
+      "type": "help",
+      "title": "Tag people in a family photo",
+      "url": "/help/connects/photo-annotator",
+      "tags": ["family-tree", "connects", "photo", "annotate", "tag-people"],
+      "feature": "family-tree",
+      "contexts": ["profile"],
+      "links": ["help-edit-profile"],
+      "text": "Famroot lets you tag the people in a family photo so everyone in the picture is linked to their profile. Open the photo annotator, mark each face, and pick who it is from your family. It's a nice way to connect old group photos to the living tree.",
+      "bodyHtml": "<p>Use the family photo annotator to <strong>tag the people in a photo</strong> and link each to their profile. mark a face and pick who it is.</p>",
+      "media": []
+    },
+    {
+      "id": "help-who-can-see-tree",
+      "type": "help",
+      "title": "Who can see your tree and its people",
+      "url": "/help/connects/visibility",
+      "tags": ["family-tree", "connects", "visibility", "privacy", "family-distance", "settings"],
+      "feature": "family-tree",
+      "contexts": ["profile"],
+      "links": ["help-invite-to-tree"],
+      "text": "Your tree is private to your trusted family network, not the public. Access follows the family path. relatives can reach the parts of the tree connected to them through relationships, and very distant connections see less. A person's own profile visibility (Public, Family, or Friends) is set in Settings on their profile, separate from the tree canvas. If a relative says they can't see someone, it's usually because that person isn't within their connected family path.",
+      "bodyHtml": "<p>Your tree is private to your trusted network. Access follows the <strong>family path</strong> (relatives reach the parts connected to them; distant connections see less). A person's <strong>Public/Family/Friends</strong> profile visibility is set in <strong>Settings</strong>, separate from the tree canvas.</p>",
+      "media": []
+    },
+    {
+      "id": "blog-building-your-tree",
+      "type": "blog",
+      "title": "Getting your whole family onto the tree",
+      "url": "/blog/building-your-tree",
+      "tags": ["family-tree", "connects", "use-case", "getting-started", "invite", "story"],
+      "feature": "family-tree",
+      "contexts": [],
+      "links": ["help-add-people", "help-invite-to-tree", "help-multiple-spouses", "help-deduplicate"],
+      "text": "A short story of building a real family tree in Famroot. The author started in Edit Family, added their parents, spouse and children with the Add Spouse, Add Son and Add Daughter nodes, and even added the family dog with Add Pet. They recorded a grandfather's second marriage by adding a second spouse, then connected the half-siblings under the right partner. When two cousins joined via Invite to Tree, a few duplicate ancestors appeared, which Deduplicate cleaned up. The takeaway: add what you know, invite relatives to fill in their own branches, and tidy up duplicates as the family grows.",
+      "bodyHtml": "<p>Building a real tree: add parents, spouse and children (and the dog with <strong>Add Pet</strong>), record a grandfather's second spouse, connect the half-siblings, then <strong>Invite to Tree</strong> so cousins fill in their branches and <strong>Deduplicate</strong> the overlaps.</p>",
+      "media": []
+    },
+    {
+      "id": "video-multi-spouse",
+      "type": "video",
+      "title": "Video: recording a second marriage",
+      "url": "/videos/multi-spouse",
+      "tags": ["family-tree", "connects", "marriage", "second-marriage", "video", "how-to"],
+      "feature": "family-tree",
+      "contexts": ["edit-family"],
+      "links": ["help-multiple-spouses", "help-add-people"],
+      "text": "A short walkthrough of recording a re-marriage. Transcript: We open Connects, choose the Family tab, and switch to Edit Family. On grandpa we use the Add Spouse node again to add his second wife. The tree redraws with multiple-spouse connections so both marriages show. We then connect two of the existing children under the first spouse and one under the second, so the half-siblings group correctly. Finally we open the Path Relation Viewer to confirm everyone is connected the way we expect, then switch back to View Family.",
+      "bodyHtml": "<p>A short walkthrough: in <strong>Edit Family</strong>, use <strong>Add Spouse</strong> again to add a second wife, connect children under the right spouse, and confirm with the <strong>Path Relation Viewer</strong>.</p>",
+      "media": [
+        {
+          "kind": "video",
+          "url": "https://cdn.famroot.com/videos/multi-spouse.mp4",
+          "durationSec": 118,
+          "transcript": "We open Connects, choose the Family tab, and switch to Edit Family. On grandpa we use the Add Spouse node again to add his second wife. The tree redraws with multiple-spouse connections so both marriages show. We then connect two of the existing children under the first spouse and one under the second, so the half-siblings group correctly. Finally we open the Path Relation Viewer to confirm everyone is connected the way we expect."
+        }
+      ]
+    },
+    {
+      "id": "discuss-second-spouse",
+      "type": "discussion",
+      "title": "How do I add my dad's second wife without losing my mum?",
+      "url": "/discuss/1421",
+      "tags": ["family-tree", "connects", "marriage", "second-marriage", "spouse", "question"],
+      "feature": "family-tree",
+      "contexts": ["edit-family"],
+      "links": ["help-multiple-spouses", "video-multi-spouse"],
+      "text": "Question: My dad remarried after my mum passed away. If I add his new wife, will it replace my mum on the tree? Answer (accepted): No, it won't. A person can have more than one spouse. In Edit Family, use the Add Spouse node on your dad again to add his new wife. Your mum stays exactly where she is and the tree shows both marriages with multiple-spouse connections. If you have step-siblings, connect them under the second spouse so everyone groups correctly. Reply: That worked, thank you. both marriages show now.",
+      "bodyHtml": "<p><strong>Q:</strong> Will adding my dad's new wife replace my late mum?</p><p><strong>A (accepted):</strong> No. use the <strong>Add Spouse</strong> node on your dad again in Edit Family. Your mum stays put; the tree shows both marriages, and you can connect step-siblings under the second spouse.</p>",
+      "media": []
+    },
+    {
+      "id": "discuss-view-from-spouse-side",
+      "type": "discussion",
+      "title": "How do I see the tree from my wife's side of the family?",
+      "url": "/discuss/1622",
+      "tags": ["family-tree", "connects", "swap-perspective", "view-couple-tree", "in-laws", "question"],
+      "feature": "family-tree",
+      "contexts": ["views"],
+      "links": ["help-swap-perspective", "help-view-couple-tree"],
+      "text": "Question: I want to look at the family the way my wife sees it, with her side of the family around her. Can I do that? Answer (accepted): Yes, two ways. Open your wife and choose Swap Perspective to re-root the whole tree on her, so it shows her family with the heading 'her name's Family'. Or open her and choose View Couple Tree to see both your family and hers together. Both only change the view. tap Recenter to come back to your own point of view. Reply: View Couple Tree was exactly what I wanted, thanks. both sides together at last.",
+      "bodyHtml": "<p><strong>Q:</strong> Can I see the family from my wife's point of view?</p><p><strong>A (accepted):</strong> Two ways. open her and choose <strong>Swap Perspective</strong> to re-root on her, or <strong>View Couple Tree</strong> to see both families together. Both are view-only. tap <strong>Recenter</strong> to return.</p>",
+      "media": []
+    },
+    {
+      "id": "discuss-duplicates-vs-merge",
+      "type": "discussion",
+      "title": "Same ancestor shows twice. do I Deduplicate or Tree Merge?",
+      "url": "/discuss/1533",
+      "tags": ["family-tree", "connects", "deduplicate", "tree-merge", "duplicates", "question"],
+      "feature": "family-tree",
+      "contexts": ["profile"],
+      "links": ["help-deduplicate", "help-tree-merge", "help-link-profiles"],
+      "text": "Question: The same great-grandmother appears twice on my tree. how do I fix it? Answer (accepted): If both copies are on your own tree, use Deduplicate. it finds likely duplicates and combines them into one person, keeping their connections. Note deduplication cannot be undone, so review the match first. If the two copies are actually on two different family trees (yours and a relative's), that's a Tree Merge instead, which goes through an approval. And if it's just two profile records for the same living person, use Link Profiles. Reply: It was duplicates on my own tree, Deduplicate sorted it. thanks for clarifying which is which.",
+      "bodyHtml": "<p><strong>Q:</strong> Same ancestor twice. Deduplicate or Tree Merge?</p><p><strong>A (accepted):</strong> Both copies on your tree &rarr; <strong>Deduplicate</strong> (can't be undone, review first). Two different trees &rarr; <strong>Tree Merge</strong> (approval). Two records for one living person &rarr; <strong>Link Profiles</strong>.</p>",
+      "media": []
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+.famie-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.famie-panel {
+  width: 100%;
+  max-width: 760px;
+  height: 760px;
+  background: white;
+  border: 1px solid #e6e8ec;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Header */
+
+.famie-header {
+  height: 76px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.famie-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.famie-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #1677ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.famie-brand h4 {
+  margin: 0;
+}
+
+.famie-brand span {
+  font-size: 12px;
+}
+
+/* Chat */
+
+.famie-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 25px;
+}
+
+.empty-state {
+  max-width: 550px;
+  margin: 70px auto;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  border-radius: 18px;
+  background: #eaf3ff;
+  color: #1677ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.empty-state h3 {
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.example-section {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.example-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.example-button {
+  height: auto;
+  min-height: 50px;
+  text-align: left;
+  white-space: normal;
+}
+
+/* Messages */
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.message-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.message-row.user {
+  flex-direction: row-reverse;
+}
+
+.message-avatar {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eef2f7;
+}
+
+.message-row.user .message-avatar {
+  background: #1677ff;
+  color: white;
+}
+
+.message-content {
+  max-width: 75%;
+}
+
+.message-row.user .message-content {
+  text-align: right;
+}
+
+.message-text {
+  margin-top: 7px;
+  padding: 12px 15px;
+  border-radius: 12px;
+  background: #f5f6f8;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.message-row.user .message-text {
+  background: #1677ff;
+  color: white;
+}
+
+/* Thinking */
+
+.thinking {
+  margin-top: 7px;
+  color: #888;
+  font-style: italic;
+}
+
+/* References */
+
+.references {
+  margin-top: 18px;
+}
+
+.reference-card {
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.reference-type {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: #777;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.reference-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.reference-why {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.reference-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #1677ff;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.reference-link:hover {
+  text-decoration: underline;
+}
+
+/* Input */
+
+.famie-input-area {
+  padding: 16px 20px 18px;
+  border-top: 1px solid #eeeeee;
+  background: white;
+}
+
+.input-hint {
+  margin-top: 7px;
+  font-size: 11px;
+  color: #999;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+  .famie-page {
+    padding: 0;
+  }
+
+  .famie-panel {
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .example-list {
+    grid-template-columns: 1fr;
+  }
+
+  .message-content {
+    max-width: 85%;
+  }
+}
